@@ -9,17 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var selectMenu: UIButton!
+    @IBOutlet var foodItems: [UIButton]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        selectMenu.layer.cornerRadius = selectMenu.frame.height / 2.0
+        
+        foodItems.forEach{ (foodButton) in
+            foodButton.layer.cornerRadius = foodButton.frame.height / 2.0
+            foodButton.isHidden = true
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func selectMenuPressedAction(_ sender: UIButton) {
+        foodItems.forEach{ (foodButton) in
+            UIView.animate(withDuration: 0.3, animations: { foodButton.isHidden = !foodButton.isHidden
+                self.view.layoutIfNeeded()
+            })
     }
-
-
+    }
+    
+    @IBAction func foodPressedAction(_ sender: UIButton) {
+        
+    }
+    
 }
-
